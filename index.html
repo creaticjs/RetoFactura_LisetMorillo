@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+		integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+	<div class="container" id="app">
+		<div>
+			<h3 class="text-center">FACTURA -- BOOTCAMP</h3>
+			<img id ="centrado" src="https://www.abcdelbebe.com/files/article_content/uploads/2017/10/27/59f3b9e5ec131.jpeg" 
+			alt="Smiley face" width="150" height="100" aling = "center">
+		</div>
+		<div id="seleccion" class="form-group">
+			<strong  class="control-label">Dulces:</strong>
+			<select id="todos" class="form-control form-control-lg" v-model="factura.dulceSeleccionado.dulce"
+				@change="infoProductoSeleccionado">
+				<option value=""> Seleccionar el producto</option>
+				<option v-for="dulce in dulces" :value="dulce.dulce">
+					{{ dulce.nombre }}
+				</option>
+			</select>
+		</div>
+
+		<div id="infoProduct" class="panel panel-default">
+			<div class="panel-heading">
+				<h3 id="tituloinfo" class="panel-title"> Información del producto</h3>
+			</div>
+
+			<div class="panel-body">
+
+				<br>
+				<p>
+					<strong>ISBN: </strong> {{ factura.dulceSeleccionado.dulce || '' }}
+				</p>
+				<p>
+					<strong>Descripción: </strong> {{ factura.dulceSeleccionado.nombre || '' }}
+				</p>
+				<p>
+					<strong>Precio: </strong> {{ factura.dulceSeleccionado.precio || '' }}
+				</p>
+
+
+			</div>
+
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-sm-3">
+						<label id="selecCantidad" class="control-label">Seleccione la cantidad:</label>
+					</div>
+					<div class="col-sm-6">
+						<input id="cantidad" type="number" min="0" v-model="factura.dulceSeleccionado.cantidad"
+							class="form-control col-sm-6 input-sm" required>
+					</div>
+					<div class="col-sm-2 text-right">
+						<button class="btn btn-success" @click="agregarALista">ADQUIRIR</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table id="tabla" class="table table-bordered">
+				<thead>
+					<tr>
+						<th>ISBN</th>
+						<th>Nombre</th>
+						<th>Precio</th>
+						<th>Cantidad</th>
+						<th>Precio Total</th>
+
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr v-for="(lista, indice) in factura.dulcesAgregados">
+						<td>{{ lista.dulce }}</td>
+						<td>{{ lista.nombre }}</td>
+						<td>{{ lista.precio }}</td>
+						<td width="100">
+							<input type="number" min="1" class="form-control input-sm" v-model="lista.cantidad">
+						</td>
+						<td>{{lista.cantidad * lista.precio }}</td>
+
+					</tr>
+				</tbody>
+
+				<tfoot>
+					<tr>
+						<td colspan="5" class="text-left">
+							<strong>Total de la factura:</strong>
+							<strong>{{ total}}</strong>
+						</td>
+
+
+					</tr>
+					<tr>
+						<td colspan="5" class="text-left">
+							<strong>Total de la factura con iva:</strong>
+							<strong>{{ total | calcularIva}}</strong>
+						</td>
+
+
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+
+
+
+
+	</div>
+	<script src="https://unpkg.com/vue@2.4.2"></script>
+	<script src="js/scripts.js"></script>
+</body>
+
+</html>

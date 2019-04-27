@@ -1,0 +1,46 @@
+#seleccion{
+    color:rgb(8, 122, 37);
+    width:800px;
+    background:rgb(61, 179, 91);
+}
+
+#todos{
+    width:400px;
+    border:1px solid rgb(163, 206, 47);
+    background-color:rgb(135, 207, 138);
+    color:rgb(28, 138, 42);
+    font-size:18px;
+    font-family :  Arial, Helvetica, sans-serif;
+}
+
+#infoProduct{
+    color:rgb(0, 0, 0);
+    width:800px;
+    background:rgb(204, 89, 89);
+}
+
+#tituloinfo{
+    color:rgb(129, 143, 6);
+}
+
+#cantidad{
+    background-color: rgb(206, 197, 197);
+	border: 2px solid rgb(133, 62, 62);
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: 20px;
+}
+
+#selecCantidad{
+    color:rgb(129, 143, 6);
+}
+
+#tabla {
+    border: red 5px solid;
+    width:800px;
+	height: 300px;
+}
+
+#centrado{
+	margin:10px auto;
+	display:block;
+    }
